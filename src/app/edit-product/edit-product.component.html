@@ -1,0 +1,7 @@
+<div class="container edit-product">
+  <h2>Edit Product</h2>
+  <div class="form-container" *ngIf="product">
+    <h3 style="text-transform: capitalize;">{{product.Name}}</h3>
+    <app-product-form [product]="product" [type]="'update'"></app-product-form>
+  </div>
+</div>

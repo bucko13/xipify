@@ -1,0 +1,9 @@
+<div class="login container">
+  <h2>Please Login to Continue</h2>
+  <form class="token-form" (ngSubmit)="onSubmit()" class="col-6">
+    <mat-form-field class="form row col-12">
+      <textarea matInput placeholder="Access token" [formControl]="token" rows="6"></textarea>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
+</div>

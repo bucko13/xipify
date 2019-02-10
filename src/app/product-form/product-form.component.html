@@ -1,0 +1,52 @@
+<form class="form row col-6" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <mat-form-field class="col-12">
+    <input
+      matInput
+      placeholder="Name"
+      formControlName="Name"
+    >
+  </mat-form-field>
+  <mat-form-field class="col-12">
+    <input
+      matInput
+      placeholder="Description"
+      formControlName="Description"
+    >
+  </mat-form-field>
+  <mat-form-field class="category-list col-12">
+    <mat-chip-list #chipList>
+      <mat-chip
+        *ngFor="let category of selectedCategories"
+        [selectable]="selectable"
+        [removable]="removable"
+        (removed)="remove(category)"
+      >
+        {{category.Name}}
+        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+      </mat-chip>
+      <input
+        placeholder="Categories"
+        #categoryInput
+        fromControlName="Categories"
+        [matAutocomplete]="auto"
+        [matChipInputFor]="chipList"
+        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+        [matChipInputAddOnBlur]="addOnBlur"
+        (matChipInputTokenEnd)="add($event)"
+      >
+    </mat-chip-list>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+      <mat-option *ngFor="let category of allCategories" [value]="category">
+        {{category.Name}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+  <mat-form-field class="col-12">
+    <input
+      matInput
+      placeholder="URL"
+      formControlName="Url"
+    >
+  </mat-form-field>
+  <button mat-raised-button color="primary" type="submit">Submit</button>
+</form>
