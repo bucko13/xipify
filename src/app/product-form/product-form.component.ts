@@ -62,9 +62,12 @@ export class ProductFormComponent implements OnInit {
     if (this.product) {
       this.productForm.patchValue({
         ...this.product,
-        CategoryIds: this.product.Categories.map(cat => cat.CategoryId)
+        CategoryIds:
+          this.product.Categories
+          ? this.product.Categories.map(cat => cat.CategoryId)
+          : [],
       });
-      this.selectedCategories = this.product.Categories;
+      this.selectedCategories = this.product.Categories ? this.product.Categories : [];
     }
     this.filteredCategories = this.productForm.controls['Categories'].valueChanges.pipe(
       startWith(null),
